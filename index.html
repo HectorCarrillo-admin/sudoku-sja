@@ -1848,6 +1848,11 @@ qsa('.rk-cat-btn').forEach(function(b){
 
 /* ══ BUTTON WIRING ══ */
 /* Mode screen */
+
+/* Defer all wiring until after first paint */
+requestAnimationFrame(function(){
+  setTimeout(function(){
+
 $('btnModeTutorial').addEventListener('click',function(){
   initTutorial();showScreen('tutorial');setTimeout(computeTutSize,80);
 });
@@ -1971,10 +1976,8 @@ if(window.location.search.indexOf('admin=1')>=0){
   _ab.addEventListener('click',openAdmin);
 }
 
-
-
-
-
+  }, 0);
+});
 </script>
 </body>
 </html>
