@@ -245,47 +245,57 @@ select:focus{border-color:var(--gold);}
 /* CONFETTI */
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:501;}
 /* MOBILE */
-@media(max-width:600px){
-  #sTutorial{overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;}
-  #sTutorial .tut-layout{flex:none;}
-  #sTutorial .copy-bar{margin-top:auto;flex-shrink:0;}
-  .brand-center{display:none;}
-  .brand-logo{height:clamp(30px,7vh,42px);}
-  .copy-bar{padding:3px 8px;}
-  .copy-logo{height:16px;}
-  .copy-txt{font-size:5px;letter-spacing:.5px;}
-  .theme-lbl{display:none;}
-  .tdot{width:17px;height:17px;}
-  .mode-cards{grid-template-columns:1fr;max-width:320px;}
-  .logo-main{font-size:clamp(42px,14vw,72px);}
-  .setup-card{max-width:100%;}
-  .game-logo{display:none;}
-  .stat-chip{min-width:34px;padding:2px 4px;}
-  .slbl{font-size:6px;letter-spacing:1px;}
-  .sval{font-size:12px;}.sval.s{font-size:7px;}
-  .side-col{display:none;}
-  .game-mid{gap:0;}
-  .numpad-grid{gap:5px;}
-  .num-btn{border-radius:10px!important;}
-  .tut-layout{flex-direction:column;overflow:visible;height:auto;}
-  .tut-sidebar{width:100%;flex-shrink:0;border-right:none;border-bottom:2px solid var(--bord2);flex-direction:column;padding:8px 10px;gap:4px;overflow:visible;max-height:none;}
-  .tut-sid-title{font-size:8px;letter-spacing:2px;margin:4px 0 2px;display:block;}
-  .tut-lv-btn{width:100%;font-size:12px;padding:7px 10px;white-space:normal;overflow:visible;text-overflow:clip;}
-  .tut-tip-btn{font-size:10px;padding:4px 8px;display:flex;}
-  .tut-main{grid-template-columns:1fr;grid-template-rows:auto auto;overflow:visible;padding:8px 10px;gap:8px;flex:none;height:auto;}
-  .theory-card{overflow:visible;min-height:0;}
-  .theory-body{max-height:none;overflow:visible;}
-  .board-sec{overflow:visible;}
-  .board-area-tut{flex-direction:column;overflow:visible;}
-  .board-wrap-tut{justify-content:center;width:100%;}
-  .board-info{flex:none;max-height:none;overflow:visible;}
-  .rk-diff-btn,.rk-cat-btn{font-size:9px;padding:5px 8px;}
-  .admin-table th,.admin-table td{padding:6px 5px;font-size:10px;}
-}
-@media(min-width:601px) and (max-width:900px){
-  .tut-main{grid-template-columns:minmax(180px,1.8fr) minmax(200px,2.5fr);}
-  .brand-sub{display:none;}
-}
+/* ═══════════════════════════════════════════════════
+   DEVICE-SPECIFIC STYLES
+   Applied via JS: body.is-mobile or body.is-desktop
+════════════════════════════════════════════════ */
+
+/* ── MOBILE ──────────────────────────────────── */
+body.is-mobile #sTutorial{overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;}
+body.is-mobile #sTutorial .tut-layout{flex:none;}
+body.is-mobile #sTutorial .copy-bar{margin-top:auto;flex-shrink:0;}
+body.is-mobile .brand-center{display:none;}
+body.is-mobile .brand-logo{height:clamp(30px,7vh,42px);}
+body.is-mobile .copy-bar{padding:3px 8px;}
+body.is-mobile .copy-logo{height:16px;}
+body.is-mobile .copy-txt{font-size:5px;letter-spacing:.5px;}
+body.is-mobile .theme-lbl{display:none;}
+body.is-mobile .tdot{width:17px;height:17px;}
+body.is-mobile .mode-cards{grid-template-columns:1fr;max-width:320px;}
+body.is-mobile .logo-main{font-size:clamp(42px,14vw,72px);}
+body.is-mobile .setup-card{max-width:100%;}
+body.is-mobile .game-logo{display:none;}
+body.is-mobile .stat-chip{min-width:34px;padding:2px 4px;}
+body.is-mobile .slbl{font-size:6px;letter-spacing:1px;}
+body.is-mobile .sval{font-size:12px;}
+body.is-mobile .sval.s{font-size:7px;}
+body.is-mobile .side-col{display:none;}
+body.is-mobile .game-mid{gap:0;}
+body.is-mobile .numpad-grid{gap:5px;}
+body.is-mobile .num-btn{border-radius:10px!important;}
+body.is-mobile .tut-layout{flex-direction:column;overflow:visible;height:auto;}
+body.is-mobile .tut-sidebar{width:100%;flex-shrink:0;border-right:none;border-bottom:2px solid var(--bord2);flex-direction:column;padding:8px 10px;gap:4px;overflow:visible;max-height:none;}
+body.is-mobile .tut-sid-title{font-size:8px;letter-spacing:2px;margin:4px 0 2px;display:block;}
+body.is-mobile .tut-lv-btn{width:100%;font-size:12px;padding:7px 10px;white-space:normal;overflow:visible;text-overflow:clip;}
+body.is-mobile .tut-tip-btn{font-size:10px;padding:4px 8px;display:flex;}
+body.is-mobile .tut-main{grid-template-columns:1fr;grid-template-rows:auto auto;overflow:visible;padding:8px 10px;gap:8px;flex:none;height:auto;}
+body.is-mobile .theory-card{overflow:visible;min-height:0;}
+body.is-mobile .theory-body{max-height:none;overflow:visible;}
+body.is-mobile .board-sec{overflow:visible;}
+body.is-mobile .board-area-tut{flex-direction:column;overflow:visible;}
+body.is-mobile .board-wrap-tut{justify-content:center;width:100%;}
+body.is-mobile .board-info{flex:none;max-height:none;overflow:visible;}
+body.is-mobile .rk-diff-btn,body.is-mobile .rk-cat-btn{font-size:9px;padding:5px 8px;}
+body.is-mobile .admin-table th,body.is-mobile .admin-table td{padding:6px 5px;font-size:10px;}
+
+/* ── TABLET ──────────────────────────────────── */
+body.is-tablet .tut-main{grid-template-columns:minmax(180px,1.8fr) minmax(200px,2.5fr);}
+body.is-tablet .brand-sub{display:none;}
+
+/* ── DESKTOP ─────────────────────────────────── */
+body.is-desktop .brand-center{display:block;}
+body.is-desktop .side-col{display:flex;}
+
 
 /* ── Mobile toolbar: erase + note ── */
 .mob-toolbar{display:none;}
@@ -548,7 +558,7 @@ select:focus{border-color:var(--gold);}
         <div class="side-chip" id="noteInd" style="display:none;"><span class="slbl">Modo</span><span style="font-family:'Space Mono',monospace;font-size:clamp(5px,.8vw,8px);color:var(--gold);font-weight:700;letter-spacing:1px;">NOTAS</span></div>
       </div>
     </div>
-    <div class="numpad-wrap"><div class="numpad-grid" id="numpad"></div></div>
+    <div class="numpad-wrap">
     <div class="mob-toolbar">
       <button class="mob-tool-btn" id="mobBtnErase">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20H7L3 16 14 5l6 6-4 4"/><line x1="6" y1="17" x2="17" y2="6"/></svg>
@@ -558,6 +568,8 @@ select:focus{border-color:var(--gold);}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
         <span id="mobNoteLbl">Notas</span>
       </button>
+    </div>
+    <div class="numpad-grid" id="numpad"></div>
     </div>
   </div>
   <div class="copy-bar">
@@ -717,6 +729,33 @@ select:focus{border-color:var(--gold);}
 <canvas id="confetti"></canvas>
 <div id="toast"></div>
 <script>
+/* ═══════════════════════════════════════════════
+   DEVICE DETECTION — runs before anything else
+════════════════════════════════════════════════ */
+(function(){
+  var ua = navigator.userAgent || '';
+  var isMobileUA = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+  var isTouchSmall = ('ontouchstart' in window) && window.innerWidth < 900;
+  var w = window.innerWidth;
+  if(isMobileUA || (isTouchSmall && w < 600)){
+    document.body.classList.add('is-mobile');
+  } else if(w >= 601 && w <= 900){
+    document.body.classList.add('is-tablet');
+  } else {
+    document.body.classList.add('is-desktop');
+  }
+  /* Re-evaluate on resize (e.g. orientation change) */
+  window.addEventListener('resize', function(){
+    document.body.classList.remove('is-mobile','is-tablet','is-desktop');
+    var w2 = window.innerWidth;
+    var mob2 = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || w2 < 600;
+    if(mob2) document.body.classList.add('is-mobile');
+    else if(w2 <= 900) document.body.classList.add('is-tablet');
+    else document.body.classList.add('is-desktop');
+  });
+})();
+
+
 
 function hashStr(s){var h=2166136261>>>0;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0;}return h;}
 function mkRng(seed){var s=hashStr(String(seed))>>>0||1;return function(){s+=0x6D2B79F5;var t=Math.imul(s^s>>>15,1|s);t^=t+Math.imul(t^t>>>7,61|t);return((t^t>>>14)>>>0)/4294967296;};}
@@ -935,33 +974,11 @@ function hilite(){
 function renderNumpad(){
   var el=$('numpad'),N=G.N;
   el.innerHTML='';
-  el.style.gridTemplateColumns='repeat(4,1fr)';
-  /* Row 1: 1,2,3,Notas — Row 2: 4,5,6,Borrar — Row 3: 7,8,9,vacío */
-  var order=[1,2,3,'note',4,5,6,'erase',7,8,9,'empty'];
-  order.forEach(function(item){
-    if(item==='note'){
-      var bn=document.createElement('button');
-      bn.id='numpadNoteBtn';
-      bn.className='num-btn'+(G.noteMode?' note-active':'');
-      bn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1.1em;height:1.1em;pointer-events:none"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><span style="font-size:.65em;display:block;letter-spacing:.5px;pointer-events:none;">Notas</span>';
-      bn.title='Notas';
-      bn.addEventListener('click',function(){
-        toggleNoteMode();
-        var nb=$('numpadNoteBtn');
-        if(nb)nb.classList.toggle('note-active',G.noteMode);
-      });
-      el.appendChild(bn);
-    } else if(item==='erase'){
-      var be=document.createElement('button');
-      be.className='num-btn';
-      be.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:1.1em;height:1.1em;pointer-events:none"><path d="M20 20H7L3 16 14 5l6 6-4 4"/><line x1="6" y1="17" x2="17" y2="6"/></svg><span style="font-size:.65em;display:block;letter-spacing:.5px;pointer-events:none;">Borrar</span>';
-      be.title='Borrar';
-      be.addEventListener('click',eraseCell);
-      el.appendChild(be);
-    } else if(item==='empty'){
-      el.appendChild(document.createElement('div'));
-    } else {
-      var n=item;
+  var isMob=document.body.classList.contains('is-mobile');
+  if(isMob){
+    /* Mobile: 3x3 grid, numbers only — tools are in mob-toolbar below */
+    el.style.gridTemplateColumns='repeat(3,1fr)';
+    for(var n=1;n<=N;n++){
       var b=document.createElement('button');
       b.className='num-btn';b.textContent=n;
       var done=G.player.reduce(function(a,row){
@@ -972,7 +989,46 @@ function renderNumpad(){
       (function(num){b.addEventListener('click',function(){enterNum(num);});})(n);
       el.appendChild(b);
     }
-  });
+  } else {
+    /* Desktop: 4 cols — 1,2,3,note / 4,5,6,erase / 7,8,9,empty */
+    el.style.gridTemplateColumns='repeat(4,1fr)';
+    var order=[1,2,3,'note',4,5,6,'erase',7,8,9,'empty'];
+    order.forEach(function(item){
+      if(item==='note'){
+        var bn=document.createElement('button');
+        bn.id='numpadNoteBtn';
+        bn.className='num-btn'+(G.noteMode?' note-active':'');
+        bn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1.1em;height:1.1em;pointer-events:none"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><span style="font-size:.65em;display:block;letter-spacing:.5px;pointer-events:none;">Notas</span>';
+        bn.title='Notas';
+        bn.addEventListener('click',function(){
+          toggleNoteMode();
+          var nb=$('numpadNoteBtn');
+          if(nb)nb.classList.toggle('note-active',G.noteMode);
+        });
+        el.appendChild(bn);
+      } else if(item==='erase'){
+        var be=document.createElement('button');
+        be.className='num-btn';
+        be.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:1.1em;height:1.1em;pointer-events:none"><path d="M20 20H7L3 16 14 5l6 6-4 4"/><line x1="6" y1="17" x2="17" y2="6"/></svg><span style="font-size:.65em;display:block;letter-spacing:.5px;pointer-events:none;">Borrar</span>';
+        be.title='Borrar';
+        be.addEventListener('click',eraseCell);
+        el.appendChild(be);
+      } else if(item==='empty'){
+        el.appendChild(document.createElement('div'));
+      } else {
+        var n=item;
+        var b=document.createElement('button');
+        b.className='num-btn';b.textContent=n;
+        var done=G.player.reduce(function(a,row){
+          return a+row.filter(function(v){return v===n;}).length;
+        },0)>=N;
+        if(done)b.classList.add('is-done');
+        if(G.noteMode&&!done)b.classList.add('note-active');
+        (function(num){b.addEventListener('click',function(){enterNum(num);});})(n);
+        el.appendChild(b);
+      }
+    });
+  }
   computeGameSize();
 }
 
