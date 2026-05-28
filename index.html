@@ -558,7 +558,7 @@ body.is-desktop .side-col{display:flex;}
         <div class="side-chip" id="noteInd" style="display:none;"><span class="slbl">Modo</span><span style="font-family:'Space Mono',monospace;font-size:clamp(5px,.8vw,8px);color:var(--gold);font-weight:700;letter-spacing:1px;">NOTAS</span></div>
       </div>
     </div>
-    <div class="numpad-wrap">
+    <div class="numpad-wrap"><div class="numpad-grid" id="numpad"></div></div>
     <div class="mob-toolbar">
       <button class="mob-tool-btn" id="mobBtnErase">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20H7L3 16 14 5l6 6-4 4"/><line x1="6" y1="17" x2="17" y2="6"/></svg>
@@ -568,8 +568,6 @@ body.is-desktop .side-col{display:flex;}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
         <span id="mobNoteLbl">Notas</span>
       </button>
-    </div>
-    <div class="numpad-grid" id="numpad"></div>
     </div>
   </div>
   <div class="copy-bar">
@@ -974,11 +972,33 @@ function hilite(){
 function renderNumpad(){
   var el=$('numpad'),N=G.N;
   el.innerHTML='';
-  var isMob=document.body.classList.contains('is-mobile');
-  if(isMob){
-    /* Mobile: 3x3 grid, numbers only — tools are in mob-toolbar below */
-    el.style.gridTemplateColumns='repeat(3,1fr)';
-    for(var n=1;n<=N;n++){
+  el.style.gridTemplateColumns='repeat(4,1fr)';
+  /* Row 1: 1,2,3,Notas — Row 2: 4,5,6,Borrar — Row 3: 7,8,9,vacío */
+  var order=[1,2,3,'note',4,5,6,'erase',7,8,9,'empty'];
+  order.forEach(function(item){
+    if(item==='note'){
+      var bn=document.createElement('button');
+      bn.id='numpadNoteBtn';
+      bn.className='num-btn'+(G.noteMode?' note-active':'');
+      bn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1.1em;height:1.1em;pointer-events:none"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><span style="font-size:.65em;display:block;letter-spacing:.5px;pointer-events:none;">Notas</span>';
+      bn.title='Notas';
+      bn.addEventListener('click',function(){
+        toggleNoteMode();
+        var nb=$('numpadNoteBtn');
+        if(nb)nb.classList.toggle('note-active',G.noteMode);
+      });
+      el.appendChild(bn);
+    } else if(item==='erase'){
+      var be=document.createElement('button');
+      be.className='num-btn';
+      be.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:1.1em;height:1.1em;pointer-events:none"><path d="M20 20H7L3 16 14 5l6 6-4 4"/><line x1="6" y1="17" x2="17" y2="6"/></svg><span style="font-size:.65em;display:block;letter-spacing:.5px;pointer-events:none;">Borrar</span>';
+      be.title='Borrar';
+      be.addEventListener('click',eraseCell);
+      el.appendChild(be);
+    } else if(item==='empty'){
+      el.appendChild(document.createElement('div'));
+    } else {
+      var n=item;
       var b=document.createElement('button');
       b.className='num-btn';b.textContent=n;
       var done=G.player.reduce(function(a,row){
@@ -989,46 +1009,7 @@ function renderNumpad(){
       (function(num){b.addEventListener('click',function(){enterNum(num);});})(n);
       el.appendChild(b);
     }
-  } else {
-    /* Desktop: 4 cols — 1,2,3,note / 4,5,6,erase / 7,8,9,empty */
-    el.style.gridTemplateColumns='repeat(4,1fr)';
-    var order=[1,2,3,'note',4,5,6,'erase',7,8,9,'empty'];
-    order.forEach(function(item){
-      if(item==='note'){
-        var bn=document.createElement('button');
-        bn.id='numpadNoteBtn';
-        bn.className='num-btn'+(G.noteMode?' note-active':'');
-        bn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1.1em;height:1.1em;pointer-events:none"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><span style="font-size:.65em;display:block;letter-spacing:.5px;pointer-events:none;">Notas</span>';
-        bn.title='Notas';
-        bn.addEventListener('click',function(){
-          toggleNoteMode();
-          var nb=$('numpadNoteBtn');
-          if(nb)nb.classList.toggle('note-active',G.noteMode);
-        });
-        el.appendChild(bn);
-      } else if(item==='erase'){
-        var be=document.createElement('button');
-        be.className='num-btn';
-        be.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:1.1em;height:1.1em;pointer-events:none"><path d="M20 20H7L3 16 14 5l6 6-4 4"/><line x1="6" y1="17" x2="17" y2="6"/></svg><span style="font-size:.65em;display:block;letter-spacing:.5px;pointer-events:none;">Borrar</span>';
-        be.title='Borrar';
-        be.addEventListener('click',eraseCell);
-        el.appendChild(be);
-      } else if(item==='empty'){
-        el.appendChild(document.createElement('div'));
-      } else {
-        var n=item;
-        var b=document.createElement('button');
-        b.className='num-btn';b.textContent=n;
-        var done=G.player.reduce(function(a,row){
-          return a+row.filter(function(v){return v===n;}).length;
-        },0)>=N;
-        if(done)b.classList.add('is-done');
-        if(G.noteMode&&!done)b.classList.add('note-active');
-        (function(num){b.addEventListener('click',function(){enterNum(num);});})(n);
-        el.appendChild(b);
-      }
-    });
-  }
+  });
   computeGameSize();
 }
 
